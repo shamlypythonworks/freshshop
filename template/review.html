@@ -1,0 +1,10 @@
+
+
+<form method="post" action="{{pr.get_url}}">
+    {% csrf_token %}
+    <input type="text" name="rev">
+    <input type="datetime-local" name="dte">
+    <button type="submit" value="submit">submit my review</button>
+</form>
+
+

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1><b>SEARCH RESULTS {{qr}}</b></h1>
+{% for i in pr %}
+<h1>{{i.name}}</h1>
+<h4>{{i.desc}}</h4>
+<img src="{{i.img.url}}">
+<h3>{{i.price}}</h3>
+<h4>{{i.stock}}</h4>
+{% endfor %}
+{% endblock %}

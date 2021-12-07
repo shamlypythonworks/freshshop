@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{%load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+    content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="banner">
+                <div class="banner-text">
+                    <h4>My cart</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% for i in ct_item %}
+    <div class="shadow card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="container">
+                        <div class="product-image">
+                        <a  href="{{i.prokee.get_url}}"><img src="{{i.prokee.img.url}}" height="70px" width="70px"></a>
+                        </div>
+                        <p class="card-text">{{i.prokee.price}} Rs\-x1</p>
+                        <p class="card-text">description:  {{i.prokee.desc|truncatechars:7}}</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+<!--            <div class="shadow card">-->
+<!--                <div class="card-body">-->
+                <h5 class="card-title">{{i.prokee.name}}</h5>
+                    <div class="product-quantity">
+                    <label> <a  href="{% url 'addtocart' i.prokee.slug %}"><i class="fa fa-plus" style="font-size:14px"></i></a> {{i.quan}} <a  href="{% url 'minCart' i.prokee.slug %}"><i class="fa fa-minus" style="font-size:14px"></i></a></label><br><br>
+                    <h4>{{i.amount_each}}</h4>
+                    </div>
+                    <button type="save for later" class="btn btn-primary">Save for later</button>
+                    <a  href="{% url 'delitem' i.prokee.slug %}"><button type="remove" class="btn btn-primary"><i class="fa fa-trash-o" style="font-size:24px"></i>Remove</button></a>
+                        <!--                <input type="number" value="{{i.quan}}" min="1">-->
+                </div>
+                <div class="col-md-4">
+                    <div class="shadow card">
+                        <div class="card-body">
+                        <p class="card-text">Delivery in 6 to 7 days</p>
+                        <h5 class="card-title">7 Days return policy</h5>
+                        </div>
+                    </div><br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+    <div class="col-md-12">
+        <div class="shadow card">
+            <div class="card-body">
+                <p class="card-text">Price Details</p>
+                <h5 class="card-text">price (how many items)</h5>
+                <h5 class="card-text">discounts</h5>
+                <h5 class="card-text">Delivery charges</h5>
+                <h5 class="card-text">Total amount: {{total}}</h5>
+            </div>
+        </div><br>
+    </div>
+    <a href="{% url 'loginpage' %}" ><button type=submit  class="btn btn-success"><h1>PLACE ORDER</h1></button></a>
+</div>
+</body>
+{% endblock %}

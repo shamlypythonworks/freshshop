@@ -1,0 +1,188 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<!-- Basic -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Metas -->
+    <title>Freshshop - Ecommerce Bootstrap 4 HTML Template</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="{% static 'hm/images/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'hm/images/apple-touch-icon.png' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'hm/css/bootstrap.min.css' %}">
+    <!-- Site hm/css -->
+    <link rel="stylesheet" href="{% static 'hm/css/style.css' %}">
+    <!-- Responsive hm/css -->
+    <link rel="stylesheet" href="{% static 'hm/css/responsive.css' %}">
+    <!-- Custom hm/css -->
+    <link rel="stylesheet" href="{% static 'hm/css/custom.css' %}">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+    <!-- Start Main Top -->
+    <div class="main-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+
+
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<div class="login-box">
+                        <select name="form" class="selectpicker show-tick form-control" onchange="location = this.value;">
+                            <option value="{% url 'registerpage' %}">Register Here</option>
+                            <option value="{% url 'loginpage' %}">login</option>
+                        </select>
+					</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Main Top -->
+
+    <!-- Start Main Top -->
+    <header class="main-header">
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+            <div class="container">
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                    <a class="navbar-brand" href="/"><img src="{% static 'hm/images/logo.png' %}" class="logo" alt=""></a>
+                </div>
+                <!-- End Header Navigation -->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">FILTER PRODUCTS</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/">all products</a></li>
+                                {% for i in catgs %}
+								    <li><a href={{i.get_url}}>{{i.ctname}}</a></li>
+							    {% endfor %}
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+
+                <!-- Start Atribute Navigation -->
+                <div class="attr-nav">
+                    <ul>
+                        <li class="side-menu">
+							<a href="#">
+								<i class="fa fa-shopping-bag"></i>
+								<span class="badge">number of items in cart {{itc}}</span>
+								<p>My Cart</p>
+							</a>
+						</li>
+                    </ul>
+                </div>
+                <!-- End Atribute Navigation -->
+            </div>
+            <!-- Start Side Menu -->
+            <div class="side">
+                <a href="#" class="close-side"><i class="fa fa-times"></i></a>
+                <li class="cart-box">
+                    <ul class="cart-list">
+                        {% for i in ct_item %}
+                        <li>
+                            <a href="#" class="photo"><img src="{{i.prokee.img.url}}" class="cart-thumb" alt="No image to disply" /></a>
+                            <h6><a href="#">{{i.prokee.name}} </a></h6>
+                            <p>{{i.quan}}x- <span class="price">{{i.prokee.price}}</span></p>
+                        </li>
+                        {% endfor %}
+                        <li class="total">
+                            <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
+                            <span class="float-right"><strong>Total</strong>: ${{total}}</span>
+                        </li>
+                    </ul>
+                </li>
+
+
+            </div>
+            <!-- End Side Menu -->
+        </nav>
+        <!-- End Navigation -->
+    </header>
+    <!-- End Main Top -->
+
+
+
+    <!-- Start Slider -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                  <div class="col-md-12">
+
+                      <h1 class="m-b-20" style="color:White"><strong>Welcome To <br> Freshshop</strong></h1>
+                      <p class="m-b-40" style="color:White">See how your users experience your website in realtime or view <br> trends to see any changes in performance over time.</p>
+                       <!-- Start Top Search -->
+<!-- Load icon library -->
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- The form  for search page-->
+                        <form   method="get" action="{% url 'search' %}">
+                          <input type="text"  placeholder="Search.." name="q" style="background-color:green;font-family:'Courier New';font-color:black;" >
+                          <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+
+                        <!--End The form  for search page-->
+                            <!-- End Top Search -->
+                  </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Slider -->
+  <!-- Start Footer  -->
+
+
+    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+    <!-- ALL hm/js FILES -->
+    <script src="{% static 'hm/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'hm/js/popper.min.js' %}"></script>
+    <script src="{% static 'hm/js/bootstrap.min.js' %}"></script>
+    <!-- ALL PLUGINS -->
+    <script src="{% static 'hm/js/jquery.superslides.min.js' %}"></script>
+    <script src="{% static 'hm/js/bootstrap-select.js' %}"></script>
+    <script src="{% static 'hm/js/inewsticker.js' %}"></script>
+    <script src="{% static 'hm/js/bootsnav.js' %}"></script>
+    <script src="{% static 'hm/js/images-loded.min.js' %}"></script>
+    <script src="{% static 'hm/js/isotope.min.js' %}"></script>
+    <script src="{% static 'hm/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'hm/js/baguetteBox.min.js' %}"></script>
+    <script src="{% static 'hm/js/form-validator.min.js' %}"></script>
+    <script src="{% static 'hm/js/contact-form-script.js' %}"></script>
+    <script src="{% static 'hm/js/custom.js' %}"></script>
+</body>
+{% block content %}
+{% endblock %}
+</html>
